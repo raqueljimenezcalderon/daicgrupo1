@@ -1,0 +1,37 @@
+<html>
+<head>
+   <style>
+      .btn { 
+         display:block;
+         margin: 20px;
+         padding: 20px 40px;
+         text-align: center;
+         border: 1px solid #000;
+         background: #ccc;
+         text-decoration: none;
+         font-size: 50px;
+         line-height: 3;
+         color: #000;
+      }
+      .btn.amarillo {
+         background: #ff0;
+      }
+      .btn.verde {
+         background: #0f0;
+      }
+   </style>
+</head>
+<body>
+   {% if led_0 == 0 %}
+      <a class="btn" href="/5/1">Led 0</a>
+   {% else %}
+      <a class="btn led_0" href="/5/0">Led 0</a>
+   {% endif %}
+
+   {% if led_1 == 0 %}
+      <a class="btn" href="/5/1">Led 1</a>
+   {% else %}
+      <a class="btn led_1" href="/5/0">Led 1</a>
+   {% endif %}
+</body>
+</html>
