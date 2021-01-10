@@ -24,7 +24,7 @@ GPIO.setmode(GPIO.BCM)
 buzz = 24
 
 # Pines de los servos
-servo_pin = 16          
+servo_pin_0 = 16          
 servo_pin_1 = 12
 
 # leds (los digitos son los numeros donde estan conectados los pines)
