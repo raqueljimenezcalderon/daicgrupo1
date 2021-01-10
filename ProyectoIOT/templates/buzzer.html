@@ -1,0 +1,33 @@
+<html>
+<head>
+   <style>
+      .btn { 
+         display:block;
+         margin: 20px;
+         padding: 20px 40px;
+         text-align: center;
+         border: 1px solid #000;
+         background: #ccc;
+         text-decoration: none;
+         font-size: 50px;
+         line-height: 3;
+         color: #000;
+      }
+      .btn.amarillo {
+         background: #ff0;
+      }
+      .btn.verde {
+         background: #0f0;
+      }
+   </style>
+</head>
+<body>
+   {% if buzz == 0 %}
+      <a class="btn" href="/16/1">Buzz</a>
+   {% else %}
+      <a class="btn buzz" href="/16/0">Buzz</a>
+   {% endif %}
+
+   
+</body>
+</html>
