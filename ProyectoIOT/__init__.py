@@ -15,6 +15,7 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8000, debug=True)
 
 bootstrap = Bootstrap(app)
+video_muestra = "./static/Hola.mp4"
 
 #Configuracion de GPIO
 GPIO.setwarnings(False)
@@ -150,11 +151,6 @@ def home():
     return render_template('inicio.html')
 
 
-@app.route('/inicio')
-def view_home():
-    return render_template("inicio.html", title="Inicio")
-
-
 @app.route("/reacciones")
 def reacciones():
     if GPIO.input(boton_0):
@@ -169,6 +165,38 @@ def reacciones():
     return render_template("reacciones.html", title="reacciones", **templateData)
 
 
+@app.route("/saludo")
+def saludo():
+    respuesta = "Saludando"
+    p_1.ChangeDutyCycle(90)
+    # Espera a que se mueva
+    sleep(1)
+    # Para el servo
+    p_1.ChangeDutyCycle(-90)
+    sleep(1)
+    # print("prueba")
+    # return ('', 204)
+    global video_muestra
+    video_muestra = "./static/Hola.mp4"
+    return render_template('inicio.html', respuesta=respuesta, title="inicio")
+
+
+@app.route("/triste")
+def triste():
+    respuesta = "Triste"
+    global video_muestra
+    video_muestra = "./static/Triste.mp4"
+    return render_template('inicio.html', respuesta=respuesta, title="inicio")
+
+
+@app.route("/agitarBrazos")
+def agitarBrazos():
+    respuesta = "Agitando Brazos"
+    global video_muestra
+    video_muestra = "./static/Saludo.mp4"
+    return render_template('inicio.html', respuesta=respuesta, title="inicio")
+
 @app.route("/pickles")
 def pickles():
-    return render_template("pickles.html", title="pickles")
+    video = video_muestra
+    return render_template("pickles.html", title="pickles", video=video)

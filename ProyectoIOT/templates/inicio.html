@@ -6,7 +6,8 @@
 {% block contenido %}
     <div class="contenedorInicial">
         <a type="button" class="btn btn-primary" href="{{ url_for('saludo') }}">Saludar</a>
-        <a type="button" class="btn btn-primary">Triste</a>
-        <a type="button" class="btn btn-primary">AgitarBrazos</a>
+        <a type="button" class="btn btn-primary" href="{{ url_for('triste') }}">Triste</a>
+        <a type="button" class="btn btn-primary" href="{{ url_for('agitarBrazos') }}">Agitar Brazos</a>
+        <p>{{respuesta}}</p>
     </div>
 {% endblock %}
