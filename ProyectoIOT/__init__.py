@@ -20,6 +20,9 @@ bootstrap = Bootstrap(app)
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 
+#Pin del buzzer
+buzz = 24
+
 # Pines de los servos
 servo_pin = 16          
 servo_pin_1 = 12
@@ -31,6 +34,9 @@ led_1 = 18
 # Inicializar pines botones
 boton_0 = 18
 boton_1 = 22
+
+# Configurar pin buzzer
+GPIO.setup(buzz, GPIO.OUT)
 
 # Configurar pines Servos
 GPIO.setup(servo_pin_0, GPIO.OUT)     
@@ -54,7 +60,27 @@ GPIO.output(led_1, GPIO.LOW)
 GPIO.setup(boton_0, GPIO.IN)
 GPIO.setup(boton_1, GPIO.IN)
 
-#Pagina inicial de los leds
+
+# Pagina inicial del buzz
+@app.route('/buzz')
+def home1():
+    templateData = {
+        'buzz' : buzz,
+    }
+    return render_template('buzzer.html', **templateData)
+
+
+# Reaccion del buzz con los botones
+@app.route('/<buzzer>/<action>')
+def buzzer(buzzer, action):
+    GPIO.output(int(buzzer), int(action))
+    templateData = {
+        'buzz' : GPIO.input(buzz), 
+    }
+    return render_template('buzzer.html', **templateData)
+
+
+# Pagina inicial de los leds
 @app.route('/leds')
 def home3():
     templateData = {
@@ -146,6 +172,3 @@ def reacciones():
 @app.route("/pickles")
 def pickles():
     return render_template("pickles.html", title="pickles")
-
-@app.route("/saludo")
-def saludo():
