@@ -161,7 +161,7 @@ def reacciones():
         respuesta = "Hola"
     elif GPIO.input(boton_1):
         respuesta = "Estoy bien"
-    elif GPIO.input(boton_2):
+    elif GPIO.input(boton_1) and GPIO.input(boton_0):
         respuesta = "Que tal?"
     templateData = {
         'respuesta': respuesta,
