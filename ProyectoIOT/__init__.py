@@ -20,6 +20,29 @@ bootstrap = Bootstrap(app)
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 
+#Buzzer
+buzz = 24
+GPIO.setup(buzz, GPIO.OUT)
+
+#Pagina inicial del buzz
+@app.route('/buzz')
+def home1():
+   templateData = {
+      'buzz' : 24,
+
+   }
+   return render_template('buzzer.html', **templateData)
+
+#Reaccion del buzz con los botones
+@app.route('/<buzzer>/<action>')
+def buzzer(buzzer, action):
+   GPIO.output(int(buzzer), int(action))
+   templateData = {
+      'buzz' : GPIO.input(buzz),
+    
+   }
+   return render_template('buzzer.html', **templateData)
+
 # Pines de los servos
 servo_pin = 16          
 servo_pin1 = 19
