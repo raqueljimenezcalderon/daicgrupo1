@@ -167,33 +167,66 @@ def reacciones():
 
 @app.route("/saludo")
 def saludo():
+    # Cambio web
     respuesta = "Saludando"
+    # Movimientos en bot
     p_1.ChangeDutyCycle(90)
-    # Espera a que se mueva
+    GPIO.output(led_0, 1)
+    GPIO.output(led_1, 1)
     sleep(1)
-    # Para el servo
+    GPIO.output(led_1, 0)
     p_1.ChangeDutyCycle(-90)
     sleep(1)
-    # print("prueba")
-    # return ('', 204)
+    GPIO.output(led_0, 0)
+    # Cambiar cara
     global video_muestra
     video_muestra = "./static/Hola.mp4"
+    # Actualizar web
     return render_template('inicio.html', respuesta=respuesta, title="inicio")
 
 
 @app.route("/triste")
 def triste():
+    # Cambio web
     respuesta = "Triste"
+    # Movimientos en bot
+    p_1.ChangeDutyCycle(45)
+    GPIO.output(led_0, 1)
+    GPIO.output(led_1, 0)
+    sleep(1)
+    GPIO.output(led_1, 0)
+    p_1.ChangeDutyCycle(-45)
+    sleep(1)
+    GPIO.output(led_0, 0)
+    GPIO.output(led_1, 0)
+    p_1.ChangeDutyCycle(45)
+    sleep(1)
+    GPIO.output(led_1, 0)
+    p_1.ChangeDutyCycle(-45)
+    # Cambiar cara
     global video_muestra
     video_muestra = "./static/Triste.mp4"
+    # Actualizar web
     return render_template('inicio.html', respuesta=respuesta, title="inicio")
 
 
 @app.route("/agitarBrazos")
 def agitarBrazos():
+    # Cambio web
     respuesta = "Agitando Brazos"
+    # Movimientos en bot
+    p_1.ChangeDutyCycle(90)
+    GPIO.output(led_0, 1)
+    GPIO.output(led_1, 1)
+    sleep(1)
+    GPIO.output(led_1, 0)
+    p_1.ChangeDutyCycle(-90)
+    sleep(1)
+    GPIO.output(led_0, 0)
+    # Cambiar cara
     global video_muestra
     video_muestra = "./static/Saludo.mp4"
+    # Actualizar web
     return render_template('inicio.html', respuesta=respuesta, title="inicio")
 
 @app.route("/pickles")
