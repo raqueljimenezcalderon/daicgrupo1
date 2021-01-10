@@ -16,6 +16,7 @@ if __name__ == '__main__':
 
 bootstrap = Bootstrap(app)
 video_muestra = "./static/Hola.mp4"
+respuesta = "No hay mensajes"
 
 #Configuracion de GPIO
 GPIO.setwarnings(False)
@@ -148,25 +149,13 @@ def pin_state(level):
 
 @app.route("/")
 def home():
+    respuestas()
     return render_template('inicio.html')
-
-
-@app.route("/reacciones")
-def reacciones():
-    if GPIO.input(boton_0):
-        respuesta = "Hola"
-    elif GPIO.input(boton_1):
-        respuesta = "Estoy bien"
-    elif GPIO.input(boton_1) and GPIO.input(boton_0):
-        respuesta = "Que tal?"
-    templateData = {
-        'respuesta': respuesta,
-    }
-    return render_template("reacciones.html", title="reacciones", **templateData)
 
 
 @app.route("/saludo")
 def saludo():
+    respuestas()
     # Cambio web
     respuesta = "Saludando"
     # Movimientos en bot
@@ -187,6 +176,7 @@ def saludo():
 
 @app.route("/triste")
 def triste():
+    respuestas()
     # Cambio web
     respuesta = "Triste"
     # Movimientos en bot
@@ -212,6 +202,7 @@ def triste():
 
 @app.route("/agitarBrazos")
 def agitarBrazos():
+    respuestas()
     # Cambio web
     respuesta = "Agitando Brazos"
     # Movimientos en bot
@@ -231,5 +222,24 @@ def agitarBrazos():
 
 @app.route("/pickles")
 def pickles():
+    respuestas()
     video = video_muestra
     return render_template("pickles.html", title="pickles", video=video)
+
+
+def respuestas():
+    global respuesta
+    if GPIO.input(boton_0):
+        respuesta = "Hola"
+    elif GPIO.input(boton_1):
+        respuesta = "Estoy bien"
+    elif GPIO.input(boton_1) and GPIO.input(boton_0):
+        respuesta = "Que tal?"
+
+@app.route("/reacciones")
+def reacciones():
+    global respuesta
+    templateData = {
+        'respuesta': respuesta,
+    }
+    return render_template("reacciones.html", title="reacciones", **templateData)
