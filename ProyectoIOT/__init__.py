@@ -2,17 +2,19 @@ from flask import Flask, render_template_string, request , render_template
 import RPi.GPIO as GPIO    
 from time import sleep
 import datetime
+from flask_bootstrap import Bootstrap
 
-
+# Configuracion de la app
 app = Flask(__name__)
-
-
-# Enable debug mode
 app.config['DEBUG'] = True
+
+# Inicializacion de la app
 '''if __name__ == "__main__":
     app.run()'''
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8000, debug=True)
+
+bootstrap = Bootstrap(app)
 
 #Configuracion de GPIO
 GPIO.setwarnings(False)
@@ -55,7 +57,7 @@ GPIO.setup(boton_1, GPIO.IN)
 
 #Pagina inicial de los leds
 @app.route('/leds')
-def home():
+def home3():
     templateData = {
         'led_0' : 5,
         'led_1' : 18,
@@ -117,3 +119,22 @@ def pin_state(level):
     # PWM.set_duty_cycle("P8_11", float(level))
     return "LED level set to " + "."
 
+
+@app.route("/")
+def home():
+    return render_template('inicio.html')
+
+
+@app.route('/inicio')
+def view_home():
+    return render_template("inicio.html", title="Inicio")
+
+
+@app.route("/reacciones")
+def reacciones():
+    return render_template("reacciones.html", title="reacciones")
+
+
+@app.route("/pickles")
+def pickles():
+    return render_template("pickles.html", title="pickles")

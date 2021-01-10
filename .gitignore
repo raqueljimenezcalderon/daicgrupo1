@@ -1,0 +1,3 @@
+# Ignorar cache
+/ProyectoIOT/__pycache__
+/ProyectoIOT/__init__.pyc
