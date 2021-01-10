@@ -1,0 +1,6 @@
+RPi.GPIO == 0.7.0
+virtualenv==20.2.2
+Jinja2==2.11.2
+Flask==1.1.2
+Flask-Bootstrap==3.3.7.1
+gpio==0.3.0
