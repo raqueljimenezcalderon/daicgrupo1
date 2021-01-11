@@ -34,7 +34,7 @@ led_0 = 5
 led_1 = 18
 
 # Inicializar pines botones
-boton_0 = 18
+boton_0 = 26
 boton_1 = 22
 
 # Configurar pin buzzer
@@ -159,13 +159,13 @@ def saludo():
     # Cambio web
     respuesta = "Saludando"
     # Movimientos en bot
-    p_1.ChangeDutyCycle(90)
+    p_1.ChangeDutyCycle(100.0)
     GPIO.output(led_0, 1)
     GPIO.output(led_1, 1)
-    sleep(1)
+    sleep(10)
     GPIO.output(led_1, 0)
-    p_1.ChangeDutyCycle(-90)
-    sleep(1)
+    p_1.ChangeDutyCycle(100.0)
+    sleep(10)
     GPIO.output(led_0, 0)
     # Cambiar cara
     global video_muestra
@@ -180,19 +180,19 @@ def triste():
     # Cambio web
     respuesta = "Triste"
     # Movimientos en bot
-    p_1.ChangeDutyCycle(45)
+    p_1.ChangeDutyCycle(80.0)
     GPIO.output(led_0, 1)
     GPIO.output(led_1, 0)
-    sleep(1)
+    sleep(10)
     GPIO.output(led_1, 0)
-    p_1.ChangeDutyCycle(-45)
-    sleep(1)
+    p_1.ChangeDutyCycle(45.0)
+    sleep(10)
     GPIO.output(led_0, 0)
     GPIO.output(led_1, 0)
-    p_1.ChangeDutyCycle(45)
-    sleep(1)
+    p_1.ChangeDutyCycle(80.0)
+    sleep(10)
     GPIO.output(led_1, 0)
-    p_1.ChangeDutyCycle(-45)
+    p_1.ChangeDutyCycle(45.0)
     # Cambiar cara
     global video_muestra
     video_muestra = "./static/Triste.mp4"
@@ -206,13 +206,13 @@ def agitarBrazos():
     # Cambio web
     respuesta = "Agitando Brazos"
     # Movimientos en bot
-    p_1.ChangeDutyCycle(90)
+    p_1.ChangeDutyCycle(90.0)
     GPIO.output(led_0, 1)
     GPIO.output(led_1, 1)
-    sleep(1)
+    sleep(10)
     GPIO.output(led_1, 0)
-    p_1.ChangeDutyCycle(-90)
-    sleep(1)
+    p_1.ChangeDutyCycle(09.0)
+    sleep(10)
     GPIO.output(led_0, 0)
     # Cambiar cara
     global video_muestra
